@@ -974,7 +974,10 @@ public class MacaoUTService implements IMacaoUTService {
 				}
 				AccountCApply newAccountCApply = accountCApplyDao.findByCardNo(newAccountCInfo
 						.getCardNo());
-				Customer macaoCustomer = customerDao.findById(accountCInfo.getCustomerId());
+				Customer macaoCustomer = new Customer();
+				macaoCustomer.setUserNo(macaoCardCustomer.getUserNo());
+				macaoCustomer.setOrgan(macaoCardCustomer.getCnName());
+				macaoCustomer.setAgentName(macaoCardCustomer.getAgentName());
 				realTransferService.accountCInfoTransfer(macaoCustomer, accountCInfo, vehicle,
 						cardType, OperationTypeEmeu.UPDATE.getCode());
 				// 旧卡黑名单状态上传及变更
