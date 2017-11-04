@@ -219,7 +219,7 @@ public class RealTransferServiceImpl implements RealTransferService {
             map.put("agentIdType", agentIdType);
             map.put("agentIdNum", customer.getAgentIdCode());
             map.put("status", customer.getState());
-            long statusChangeTime = new Date().getTime();
+            long statusChangeTime = System.currentTimeMillis();
             map.put("statusChangeTime", statusChangeTime);
             map.put("operation", operator);
 
