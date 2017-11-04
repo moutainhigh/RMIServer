@@ -266,7 +266,11 @@ public class UnLostService implements IUnLostService {
 
 			//ygz wangjinhao---------------------------------- start CARDUPLOAD+CARDBLACKLISTUPLOAD20171019
 			VehicleInfo vehicleInfo = vehicleInfoDao.findByAccountCNo(accountCInfo.getCardNo());
-			realTransferService.accountCInfoTransfer(customer, accountCInfo, vehicleInfo,
+			Customer newCustomer = new Customer();
+			newCustomer.setUserNo(cardHolder.getUserNo());
+			newCustomer.setOrgan(cardHolder.getName());
+			newCustomer.setAgentName(cardHolder.getAgentName());
+			realTransferService.accountCInfoTransfer(newCustomer, accountCInfo, vehicleInfo,
 					CardStatusEmeu.NORMAL.getCode(), OperationTypeEmeu.UPDATE.getCode());
 
 			// 调用用户卡黑名单上传及变更接口
