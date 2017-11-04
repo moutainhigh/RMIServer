@@ -2,7 +2,11 @@
 package com.hgsoft.customer.entity;
 
 import java.util.Date;
-
+/*YGZ RuIHaoZ Tip 客户回执 客户业务 此处可能需要修改*/
+/* CustomerBussiness*/
+/*CustomerAddReceipt*/
+/*CustomerImp*/
+/*ExceptionCustomer*/
 public class Customer  implements java.io.Serializable {
 
 	private static final long serialVersionUID = -3058602204780838593L;
@@ -69,7 +73,7 @@ public class Customer  implements java.io.Serializable {
 	private String exceptionMessage;//数据迁移相关：异常信息
 	private String handleFlag;////数据迁移相关：异常客户处理标志
 
-	/*YGZ RuiHaoZ  add*/
+	/*YGZ RuiHaoZ Add 新增字段*/
 	private String organTel;//客户本人手机
 	private String agentName;//经办人名称
 	private String agentTel;//经办人手机

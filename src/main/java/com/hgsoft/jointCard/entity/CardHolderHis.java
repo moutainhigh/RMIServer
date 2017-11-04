@@ -28,7 +28,7 @@ public class CardHolderHis implements Serializable {
 	private String mobileNum;
 	private String linkAddr;
 
-	/*YGZ RuiHaoZ Add 新增字段 新增字段**/
+	/*YGZ RuiHaoZ Add 新增字段**/
 	private String userNo;//用户号
 	private String userType; //用户类型
 	private String secondNo;//二级编码
@@ -38,7 +38,15 @@ public class CardHolderHis implements Serializable {
 	private String agentTel;//经办人手机
 	private String agentIdType;//经办人证件类型
 	private String agentIdCode;//经办人证件号码
-	private String writeSecondNo; //本部/分支机构
+	private String writeSecond; //本部/分支机构
+
+	public String getWriteSecond() {
+		return writeSecond;
+	}
+
+	public void setWriteSecond(String writeSecond) {
+		this.writeSecond = writeSecond;
+	}
 
 	public String getUserNo() {
 		return userNo;
@@ -149,7 +157,7 @@ public class CardHolderHis implements Serializable {
 		this.agentTel = cardHolder.getAgentTel();
 		this.agentIdType = cardHolder.getAgentIdType();
 		this.agentIdCode = cardHolder.getAgentIdCode();
-		this.writeSecondNo = cardHolder.getWriteSecondNo();
+		this.writeSecond = cardHolder.getWriteSecond();
 	}
 
 	public Long getId() {

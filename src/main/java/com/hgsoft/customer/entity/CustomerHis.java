@@ -73,7 +73,7 @@ public class CustomerHis  implements java.io.Serializable {
 	private String exceptionMessage;//数据迁移相关：异常信息
 	private String handleFlag;////数据迁移相关：异常客户处理标志
 
-	/*YGZ RuiHaoZ  Add*/
+	/*YGZ RuiHaoZ Add 新增字段*/
 	private String organTel;//客户本人手机
 	private String agentName;//经办人名称
 	private String agentTel;//经办人手机
@@ -180,7 +180,7 @@ public class CustomerHis  implements java.io.Serializable {
 		this.exceptionMessage = exceptionMessage;
 		this.handleFlag = handleFlag;
 
-		   /*YGZ RuiHaoZ ADD */
+		   /*YGZ RuiHaoZ Add 新增字段 */
 
 	}
 
@@ -219,13 +219,21 @@ public class CustomerHis  implements java.io.Serializable {
 		this.secondName = customer.getSecondName();
 		this.exceptionMessage = customer.getExceptionMessage();
 		this.handleFlag = customer.getHandleFlag();
-		 /*YGZ RuiHaoZ ADD */
+		 /*YGZ RuiHaoZ Add 新增字段 */
 		this.agentIdCode = customer.getAgentIdCode();
 		this.agentIdType = customer.getAgentIdType();
 		this.agentTel = customer.getAgentTel();
 		this.agentName = customer.getAgentName();
 		this.organTel = customer.getOrganTel();
 		this.writeSecond = customer.getWriteSecond();
+	}
+
+	public String getWriteSecond() {
+		return writeSecond;
+	}
+
+	public void setWriteSecond(String writeSecond) {
+		this.writeSecond = writeSecond;
 	}
 
 	public Long getId() {

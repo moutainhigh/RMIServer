@@ -185,55 +185,53 @@ public class RealTransferServiceImpl implements RealTransferService {
 
 	@Override
 	public void userInfoTransfer(Customer customer, Integer operator) {
+              /*YGZ RuiHaoZ Add 上传客户信息*/
+            if (customer == null) {
+                    return;
+            }
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("id", customer.getUserNo());
+            String userType = (customer.getUserType().equals("8") || customer.getUserType().equals("08")) ? "1" : "2";
+            map.put("userType", userType);
+            map.put("userName", customer.getOrgan());
+            String userIdType = DataTransfer.idTypeTransfer(customer.getIdType(), userType);
+            map.put("userIdType", userIdType);
+            map.put("userIdNum", customer.getIdCode());
+            String tel = userType.equals("1") ? customer.getOrganTel() : customer.getAgentTel();
+            map.put("tel", tel);
+            map.put("address", customer.getAddr());
+            // TODO: 2017/10/30   服务类型定为‘2’
+            map.put("registeredType", 2);
+            map.put("channelId", customer.getPlaceNo());
+            long registeredTime = customer.getFirRunTime().getTime();
+            map.put("registeredTime", registeredTime);
+            String department = "";
+            if (userType.equals("2")) {
+                    if (StringUtils.isEmpty(customer.getSecondNo())) {
+                            department = "本部";
+                    } else {
+                            department = customer.getSecondName();
+                    }
+            }
+            map.put("department", department);
+            map.put("agentName", customer.getAgentName());
+            String agentIdType = DataTransfer.idTypeTransfer(customer.getAgentIdType(), userType);
+            map.put("agentIdType", agentIdType);
+            map.put("agentIdNum", customer.getAgentIdCode());
+            map.put("status", customer.getState());
+            long statusChangeTime = new Date().getTime();
+            map.put("statusChangeTime", statusChangeTime);
+            map.put("operation", operator);
 
-		try {
-			/*YGZ RuiHaoZ Add*/
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("id", customer.getUserNo());
-			String userType = (customer.getUserType().equals("8") || customer.getUserType().equals("08")) ? "1" : "2";
-			map.put("userType", userType);
-			map.put("userName", customer.getOrgan());
-			String userIdType = DataTransfer.idTypeTransfer(customer.getIdType(), userType);
-			map.put("userIdType", userIdType);
-			map.put("userIdNum", customer.getIdCode());
-			String tel = userType.equals("1") ? customer.getOrganTel() : customer.getAgentTel();
-			map.put("tel", tel);
-			map.put("address", customer.getAddr());
-			// TODO: 2017/10/30   服务类型定为‘2’
-			map.put("registeredType", 2);
-			map.put("channelId", customer.getPlaceId());
-
-			map.put("registeredTime", DateUtil.dateFormat(customer.getFirRunTime()));//YYYY-MM-DDTHH:mm:ss
-			String department = "";
-			if (userType.equals("2")) {
-				if (StringUtils.isEmpty(customer.getSecondNo())) {
-					department = "本部";
-				} else {
-					department = customer.getSecondName();
-				}
-			}
-			map.put("department", department);
-			map.put("agentName", customer.getAgentName());
-			String agentIdType = DataTransfer.idTypeTransfer(customer.getAgentIdType(), userType);
-			map.put("agentIdType", agentIdType);
-			map.put("agentIdNum", customer.getAgentIdCode());
-			map.put("status", customer.getState());
-			String statusChangeTime = DateUtil.dateFormat(new Date());
-			map.put("statusChangeTime", statusChangeTime);
-			map.put("operation", operator);
-
-			JSONObject jsonObject = new JSONObject();
-			jsonObject.putAll(map);
-			logger.debug("UserInfoTransfer:" + jsonObject.toString());
-			RealBusinessReq realBusinessReq = new RealBusinessReq();
-			realBusinessReq.setBusinessContent(jsonObject.toString());
-			realBusinessReq.setBusinessType(BusinessTypeEmeu.USERUPLOAD.getCode());
-			realBusinessReq.setOperation(OperationTypeEmeu.TRANSFER.getCode());
-			realBusinessReq.setCreateTime(DateUtil.getNowTime());
-			realBusinessReqService.save(realBusinessReq);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.putAll(map);
+            logger.debug("UserInfoTransfer:" + jsonObject.toString());
+            RealBusinessReq realBusinessReq = new RealBusinessReq();
+            realBusinessReq.setBusinessContent(jsonObject.toString());
+            realBusinessReq.setBusinessType(BusinessTypeEmeu.USERUPLOAD.getCode());
+            realBusinessReq.setOperation(OperationTypeEmeu.TRANSFER.getCode());
+            realBusinessReq.setCreateTime(DateUtil.getNowTime());
+            realBusinessReqService.save(realBusinessReq);
 	}
 
 	@Override

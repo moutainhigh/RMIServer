@@ -35,14 +35,14 @@ public class CardHolder implements Serializable {
 	private String agentTel;//经办人手机
 	private String agentIdType;//经办人证件类型
 	private String agentIdCode;//经办人证件号码
-	private String writeSecondNo; //本部/分支机构
+	private String writeSecond; //本部/分支机构
 
-	public String getWriteSecondNo() {
-		return writeSecondNo;
+	public String getWriteSecond() {
+		return writeSecond;
 	}
 
-	public void setWriteSecondNo(String writeSecondNo) {
-		this.writeSecondNo = writeSecondNo;
+	public void setWriteSecond(String writeSecond) {
+		this.writeSecond = writeSecond;
 	}
 
 	public String getUserNo() {

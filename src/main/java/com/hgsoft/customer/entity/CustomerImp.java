@@ -29,6 +29,22 @@ public class CustomerImp  implements java.io.Serializable {
 	private Long placeId;
 	private String placeName;
 	private String placeNo;
+
+
+	/*YGZ RuiHaoZ Add 新增字段*/
+	private String organTel;//客户本人手机
+
+
+	public String getOrganTel() {
+		return organTel;
+	}
+
+	public void setOrganTel(String organTel) {
+		this.organTel = organTel;
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}
