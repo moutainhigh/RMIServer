@@ -627,7 +627,10 @@ public class MacaoUTService implements IMacaoUTService {
 
 				//ygz wangjinhao---------------------------------- start CARDUPLOAD+CARDBLACKLISTUPLOAD20171019
 				VehicleInfo vehicleInfo = vehicleInfoDao.findByAccountCNo(newAccountCInfo.getCardNo());
-				Customer customer = customerDao.findById(accountCInfo.getCustomerId());
+				Customer customer = new Customer();
+				customer.setUserNo(macaoCustomer.getUserNo());
+				customer.setOrgan(macaoCustomer.getCnName());
+				customer.setAgentName(macaoCustomer.getAgentName());
 				realTransferService.accountCInfoTransfer(customer, accountCInfo,
 						vehicleInfo, CardStatusEmeu.NOCARD_CANCLE.getCode(),
 						OperationTypeEmeu.UPDATE.getCode());
