@@ -1214,8 +1214,12 @@ public class MacaoUTService implements IMacaoUTService {
 					// 有卡
 					cardStatus = CardStatusEmeu.HADCARD_CANCLE.getCode();
 				}
+				Customer newCustomer = new Customer();
+				newCustomer.setUserNo(macaoCardCustomer.getUserNo());
+				newCustomer.setOrgan(macaoCardCustomer.getCnName());
+				newCustomer.setAgentName(macaoCardCustomer.getAgentName());
 				// 用户卡信息上传及变更
-				realTransferService.accountCInfoTransfer(customer, accountCInfo,
+				realTransferService.accountCInfoTransfer(newCustomer, accountCInfo,
 						vehicleInfo, cardStatus, OperationTypeEmeu.UPDATE.getCode());
 
 				if (CardStatusEmeu.NOCARD_CANCLE.getCode().intValue() == cardStatus.intValue()) {

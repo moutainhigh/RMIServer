@@ -848,9 +848,12 @@ public class AccountCStopCardService implements IAccountCStopCardService {
 				// 有卡
 				cardStatus = CardStatusEmeu.HADCARD_CANCLE.getCode();
 			}
-
+			Customer newCustomer = new Customer();
+			newCustomer.setUserNo(cardHolder.getUserNo());
+			newCustomer.setOrgan(cardHolder.getName());
+			newCustomer.setAgentName(cardHolder.getAgentName());
 			// 用户卡信息上传及变更
-			realTransferService.accountCInfoTransfer(customer, accountCInfo,
+			realTransferService.accountCInfoTransfer(newCustomer, accountCInfo,
 					vehicleInfo, cardStatus, OperationTypeEmeu.UPDATE.getCode());
 
 			if (CardStatusEmeu.NOCARD_CANCLE.getCode().intValue() == cardStatus.intValue()) {
