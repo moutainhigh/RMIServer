@@ -42,6 +42,8 @@ import com.hgsoft.customer.entity.ServiceFlowRecord;
 import com.hgsoft.customer.entity.VehicleInfo;
 import com.hgsoft.customer.serviceInterface.ICustomerService;
 import com.hgsoft.exception.ApplicationException;
+import com.hgsoft.jointCard.dao.CardHolderDao;
+import com.hgsoft.jointCard.entity.CardHolder;
 import com.hgsoft.prepaidC.entity.Cancel;
 import com.hgsoft.system.dao.ServiceWaterDao;
 import com.hgsoft.system.entity.ServiceWater;
@@ -158,6 +160,8 @@ public class LianCardFileUploadService implements ILianCardFileUploadService {
 	private RealTransferService realTransferService;
 	@Resource
 	private NoRealTransferService noRealTransferService;
+	@Resource
+	private CardHolderDao cardHolderDao;
 	//ygz wangjinhao---------------------------------- end CARDUPLOAD+CARDBLACKLISTUPLOAD20171030
 
 
@@ -491,7 +495,16 @@ public class LianCardFileUploadService implements ILianCardFileUploadService {
 
 			//ygz wangjinhao---------------------------------- start CARDUPLOAD+CARDBLACKLISTUPLOAD20171030
 			VehicleInfo vehicleInfo = vehicleInfoDao.findByAccountCNo(accountCInfo.getCardNo());
-			realTransferService.accountCInfoTransfer(customer, accountCInfo, vehicleInfo,
+			CardHolder cardHolder = cardHolderDao.findByAccountCId(accountCInfo.getId().toString());
+			if (null == cardHolder) {
+				throw new ApplicationException("持卡人信息为空！");
+			}
+			Customer newCustomer = new Customer();
+			newCustomer.setUserNo(cardHolder.getUserNo());
+			newCustomer.setOrgan(cardHolder.getName());
+			newCustomer.setAgentName(cardHolder.getAgentName());
+
+			realTransferService.accountCInfoTransfer(newCustomer, accountCInfo, vehicleInfo,
 					CardStatusEmeu.NORMAL.getCode(),
 					OperationTypeEmeu.UPDATE.getCode());
 
@@ -623,8 +636,17 @@ public class LianCardFileUploadService implements ILianCardFileUploadService {
 
 			//ygz wangjinhao---------------------------------- start CARDUPLOAD+CARDBLACKLISTUPLOAD20171030
 			VehicleInfo vehicleInfo = vehicleInfoDao.findByAccountCNo(accountCInfo.getCardNo());
+			CardHolder cardHolder = cardHolderDao.findByAccountCId(accountCInfo.getId().toString());
+			if (null == cardHolder) {
+				throw new ApplicationException("持卡人信息为空！");
+			}
+			Customer newCustomer = new Customer();
+			newCustomer.setUserNo(cardHolder.getUserNo());
+			newCustomer.setOrgan(cardHolder.getName());
+			newCustomer.setAgentName(cardHolder.getAgentName());
+
 			// 调用用户卡信息上传及变更接口
-			realTransferService.accountCInfoTransfer(customer, accountCInfo, vehicleInfo,
+			realTransferService.accountCInfoTransfer(newCustomer, accountCInfo, vehicleInfo,
 					CardStatusEmeu.CARD_LOSS.getCode(), OperationTypeEmeu.UPDATE
 							.getCode());
 
@@ -769,8 +791,14 @@ public class LianCardFileUploadService implements ILianCardFileUploadService {
 
 			//ygz wangjinhao---------------------------------- start CARDUPLOAD+CARDBLACKLISTUPLOAD20171030
 			VehicleInfo vehicleInfo = vehicleInfoDao.findByAccountCNo(accountCInfo.getCardNo());
+			CardHolder cardHolder = cardHolderDao.findByAccountCId(accountCInfo.getId().toString());
+			Customer newCustomer = new Customer();
+			newCustomer.setUserNo(cardHolder.getUserNo());
+			newCustomer.setOrgan(cardHolder.getName());
+			newCustomer.setAgentName(cardHolder.getAgentName());
+
 			// 用户卡信息上传及变更
-			realTransferService.accountCInfoTransfer(customer, accountCInfo,
+			realTransferService.accountCInfoTransfer(newCustomer, accountCInfo,
 					vehicleInfo, CardStatusEmeu.NOCARD_CANCLE.getCode(), OperationTypeEmeu.UPDATE
 							.getCode());
 

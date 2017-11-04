@@ -135,9 +135,28 @@ public class CardHolderDao extends BaseDao {
 	 * @author wangjinhao
 	 */
 	public CardHolder findByUserNo(String userNo) {
-		String sql = "select * from csms_hk_cardHolder where userNo = ?";
+		String sql = "select * from csms_hk_cardHolder where userNo = ? order by id desc";
 		if (StringUtils.isNotBlank(userNo)) {
 			List<CardHolder> list = super.queryObjectList(sql, CardHolder.class, userNo);
+			if (null != list && !list.isEmpty()) {
+				return list.get(0);
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * 根据记账卡卡号进行查询持卡人信息
+	 *
+	 * @param accountcId
+	 * 		记账卡卡号
+	 * @return 持卡人信息
+	 * @author wangjinhao
+	 */
+	public CardHolder findByAccountCId(String accountcId) {
+		String sql = "select * from csms_hk_cardHolder where accountcid = ? order by id desc";
+		if (StringUtils.isNotBlank(accountcId)) {
+			List<CardHolder> list = super.queryObjectList(sql, CardHolder.class, accountcId);
 			if (null != list && !list.isEmpty()) {
 				return list.get(0);
 			}
