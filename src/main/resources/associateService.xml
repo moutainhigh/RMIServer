@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://www.springframework.org/schema/task 
+		http://www.springframework.org/schema/task/spring-task-3.0.xsd 
+       ">
+	
+	<!-- 持卡人信息管理 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="CardHolderService"></property>
+		<property name="service" ref="cardHolderService" />
+		<property name="serviceInterface" value="com.hgsoft.jointCard.serviceInterface.ICardHolderService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 联营卡发行 -->
+	<bean id="jointCardIssueService" class="com.hgsoft.jointCard.service.JointCardIssueService"></bean>
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="JointCardIssueService"></property>
+		<property name="service" ref="jointCardIssueService" />
+		<property name="serviceInterface" value="com.hgsoft.jointCard.serviceInterface.IJointCardIssueService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="ReqInfoService"></property>
+		<property name="service" ref="reqInfoService" />
+		<property name="serviceInterface" value="com.hgsoft.associateAcount.serviceInterface.IReqInfoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="ReqInfoHisService"></property>
+		<property name="service" ref="reqInfoHisService" />
+		<property name="serviceInterface" value="com.hgsoft.associateAcount.serviceInterface.IReqInfoHisService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="openService"></property>
+		<property name="service" ref="openService" />
+		<property name="serviceInterface" value="com.hgsoft.associateAcount.serviceInterface.IOpenService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="cancelOpenService"></property>
+		<property name="service" ref="cancelOpenService" />
+		<property name="serviceInterface" value="com.hgsoft.associateAcount.serviceInterface.ICancelOpenService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="logOutService"></property>
+		<property name="service" ref="logOutService" />
+		<property name="serviceInterface" value="com.hgsoft.associateAcount.serviceInterface.ILogOutService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="lostService"></property>
+		<property name="service" ref="lostService" />
+		<property name="serviceInterface" value="com.hgsoft.associateAcount.serviceInterface.ILostService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="unLostService"></property>
+		<property name="service" ref="unLostService" />
+		<property name="serviceInterface" value="com.hgsoft.associateAcount.serviceInterface.IUnLostService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="LianCardInfoService"></property>
+		<property name="service" ref="lianCardInfoService" />
+		<property name="serviceInterface" value="com.hgsoft.associateAcount.serviceInterface.ILianCardInfoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="AcInvoicInfoService"></property>
+		<property name="service" ref="acInvoicInfoService" />
+		<property name="serviceInterface" value="com.hgsoft.associateAcount.serviceInterface.IAcInvoicInfoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="DarkListService"></property>
+		<property name="service" ref="darkListService" />
+		<property name="serviceInterface" value="com.hgsoft.associateAcount.serviceInterface.IDarkListService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="PwdService"></property>
+		<property name="service" ref="pwdService" />
+		<property name="serviceInterface" value="com.hgsoft.associateAcount.serviceInterface.IPwdService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="LianCardFileUploadService"></property>
+		<property name="service" ref="lianCardFileUploadService" />
+		<property name="serviceInterface" value="com.hgsoft.associateAcount.serviceInterface.ILianCardFileUploadService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	
+	
+	
+	
+	
+	
+	
+</beans>

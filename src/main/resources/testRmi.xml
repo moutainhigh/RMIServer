@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       ">
+
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="TestService"></property>
+		<property name="service" ref="testService" />
+		<property name="serviceInterface" value="com.hgsoft.servlet.serviceInterface.ITestService" />
+		<property name="registry" ref="registry"/>
+		<property name="servicePort" value="${rmiPort}" />
+	</bean>
+
+	<bean id="testRmi" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://127.0.0.1:${rmiPort}/TestService" />
+		<property name="serviceInterface"
+				  value="com.hgsoft.servlet.serviceInterface.ITestService" />
+		<property name="refreshStubOnConnectFailure" value="true" />
+		<property name="lookupStubOnStartup" value="false" />
+	</bean>
+
+</beans>

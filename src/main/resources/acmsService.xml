@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://www.springframework.org/schema/task 
+		http://www.springframework.org/schema/task/spring-task-3.0.xsd 
+       ">
+	
+	
+	<!-- 电子标签恢复 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="TagRecoverServiceACMS"></property>
+		<property name="service" ref="tagRecoverServiceACMS" />
+		<property name="serviceInterface"
+			value="com.hgsoft.acms.obu.serviceInterface.ITagRecoverServiceACMS" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 电子标签更换 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="TagReplaceServiceACMS"></property>
+		<property name="service" ref="tagReplaceServiceACMS" />
+		<property name="serviceInterface"
+			value="com.hgsoft.acms.obu.serviceInterface.ITagReplaceServiceACMS" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 电子标签停用 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="TagStopServiceACMS"></property>
+		<property name="service" ref="tagStopServiceACMS" />
+		<property name="serviceInterface"
+			value="com.hgsoft.acms.obu.serviceInterface.ITagStopServiceACMS" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	
+	<!-- 电子标签发行 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="TagInfoServiceACMS"></property>
+		<property name="service" ref="tagInfoServiceACMS" />
+		<property name="serviceInterface" value="com.hgsoft.acms.obu.serviceInterface.ITagInfoServiceACMS" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 电子标签迁移 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="TagInfoMigrateServiceACMS"></property>
+		<property name="service" ref="tagInfoMigrateServiceACMS" />
+		<property name="serviceInterface" value="com.hgsoft.acms.obu.serviceInterface.ITagInfoMigrateServiceACMS" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 电子标签注销 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="TagInfoCancelServiceACMS"></property>
+		<property name="service" ref="tagInfoCancelServiceACMS" />
+		<property name="serviceInterface" value="com.hgsoft.acms.obu.serviceInterface.ITagInfoCancelServiceACMS" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- obu制作 -->
+	<bean id="obuActRecordServiceACMS" class="com.hgsoft.acms.obu.service.OBUActRecordServiceACMS"></bean>
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="obuActRecordServiceACMS"></property>
+		<property name="service" ref="obuActRecordServiceACMS" />
+		<property name="serviceInterface" value="com.hgsoft.acms.obu.serviceInterface.IOBUActRecordServiceACMS" />
+		<property name="registryPort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- obu明细 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="obuActDetailServiceACMS"></property>
+		<property name="service" ref="OBUActDetailServiceACMS" />
+		<property name="serviceInterface" value="com.hgsoft.acms.obu.serviceInterface.IOBUActDetailServiceACMS" />
+		<property name="registryPort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 其他服务 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="OtherServiceACMS"></property>
+		<property name="service" ref="otherServiceACMS" />
+		<property name="serviceInterface" value="com.hgsoft.acms.other.serviceInterface.IOtherServiceACMS" />
+		<property name="registryPort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 回执打印  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="ReceiptPrintServiceACMS"></property>
+		<property name="service" ref="receiptPrintServiceACMS" />
+		<property name="serviceInterface" value="com.hgsoft.acms.other.serviceInterface.IReceiptPrintServiceACMS" />
+		<property name="registryPort" value="${rmiPort}" />
+	</bean>
+	
+	<!--车辆信息  -->
+<!-- 	<bean id="vehicleInfoService" class="com.hgsoft.customer.service.VehicleInfoService"></bean>
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="VehicleInfoService"></property>
+		<property name="service" ref="vehicleInfoService" />
+		<property name="serviceInterface" value="com.hgsoft.customer.serviceInterface.IVehicleInfoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean> -->
+	
+	<!--客服流水  -->
+<!-- 	<bean id="serviceFlowRecordService" class="com.hgsoft.customer.service.ServiceFlowRecordService"></bean>
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="ServiceFlowRecordService"></property>
+		<property name="service" ref="serviceFlowRecordService" />
+		<property name="serviceInterface" value="com.hgsoft.customer.serviceInterface.IServiceFlowRecordService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean> -->
+	
+	<!--车卡标绑定  -->
+<!-- 	<bean id="carObuCardInfoService" class="com.hgsoft.customer.service.CarObuCardInfoService"></bean>
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="CarObuCardInfoService"></property>
+		<property name="service" ref="carObuCardInfoService" />
+		<property name="serviceInterface" value="com.hgsoft.customer.serviceInterface.ICarObuCardInfoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean> -->
+	
+</beans>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       ">
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="AirRechargeReqService"></property>
+		<property name="service" ref="airRechargeReqService" />
+		<property name="serviceInterface" value="com.hgsoft.airrecharge.serviceInterface.IAirRechargeReqService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="AirRechargeSureService"></property>
+		<property name="service" ref="airRechargeSureService" />
+		<property name="serviceInterface" value="com.hgsoft.airrecharge.serviceInterface.IAirRechargeSureService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="TakeBillCardTypeService"></property>
+		<property name="service" ref="takeBillCardTypeService" />
+		<property name="serviceInterface" value="com.hgsoft.airrecharge.serviceInterface.ITakeBillCardTypeService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="ReqInterfaceFlowService"></property>
+		<property name="service" ref="reqInterfaceFlowService" />
+		<property name="serviceInterface" value="com.hgsoft.airrecharge.serviceInterface.IReqInterfaceFlowService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="ScaddSendService"></property>
+		<property name="service" ref="scaddSendService" />
+		<property name="serviceInterface" value="com.hgsoft.clearInterface.serviceInterface.IScaddSendService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="PrepaidCService"></property>
+		<property name="service" ref="prepaidCService" />
+		<property name="serviceInterface" value="com.hgsoft.prepaidC.serviceInterface.IPrepaidCService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="ScAddService"></property>
+		<property name="service" ref="scAddService" />
+		<property name="serviceInterface" value="com.hgsoft.prepaidC.serviceInterface.IScAddService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+</beans>

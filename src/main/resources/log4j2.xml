@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <Properties>
+        <Property name="log-path">/logs</Property>
+    </Properties>
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%X{userId} %d [%t] %X{clientIP} %-5p %logger{36} %M:%L - %msg%n"/>
+        </Console>
+        <RollingFile name="MainFile" fileName="${log-path}/testlog.log"
+                     filePattern="${log-path}/%d{yyyy-MM-dd}-testlog.log">
+            <PatternLayout>
+                <pattern>%X{userId} %d [%t] %X{clientIP} %-5p %logger{36} %M:%L - %msg%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <!--<SizeBasedTriggeringPolicy size="20MB"/>-->
+            </Policies>
+            <!--fileIndex有两个值max和min。 max时，最新文件会保存在需要最大的文件中，min相反-->
+            <!--<DefaultRolloverStrategy max="20" fileIndex="max"/>-->
+        </RollingFile>
+        <RollingFile name="QuartzFile" fileName="${log-path}/quartz.log"
+                     filePattern="${log-path}/%d{yyyy-MM}/%d{yyyy-MM-dd}-quartz.log">
+            <PatternLayout>
+                <pattern>%X{userId} %d [%t] %X{clientIP} %-5p %logger{36} %M:%L - %msg%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <!--<SizeBasedTriggeringPolicy size="20MB"/>-->
+            </Policies>
+            <!--fileIndex有两个值max和min。 max时，最新文件会保存在需要最大的文件中，min相反-->
+            <!--<DefaultRolloverStrategy max="20" fileIndex="max"/>-->
+        </RollingFile>
+        <RollingFile name="MonitorFile" fileName="${log-path}/monitor.log"
+                     filePattern="${log-path}/%d{yyyy-MM}/monitor/%d{yyyy-MM-dd}-monitor.log">
+            <PatternLayout>
+                <pattern>%X{userId} %d [%t] %X{clientIP} %-5p %logger{36} %M:%L - %msg%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+    </appenders>
+
+    <loggers>
+        <!--spring-->
+        <logger name="org.springframework" level="WARN"/>
+        <logger name="org.springframework.jdbc.core.JdbcTemplate" level="DEBUG"/>
+        <logger name="org.springframework.jdbc.core.StatementCreatorUtils" level="Trace"/>
+        <logger name="org.springframework.scheduling" level="WARN"/>
+
+        <logger name="com.opensymphony" level="WARN"/>
+        <logger name="org.apache" level="WARN"/>
+        <logger name="com.mchange.v2" level="WARN"/>
+        <logger name="net.sf.ehcache" level="WARN"/>
+        <logger name="net.sf.jxls" level="WARN"/>
+        <logger name="com.alibaba" level="WARN"/>
+        <logger name="org.mybatis.spring" level="WARN"/>
+        <logger name="io.netty" level="WARN"/>
+
+        <!--hibernate-->
+        <logger name="org.hibernate" level="WARN"/>
+        <!-- show parameters for hibernate sql 专为 Hibernate 定制 -->
+        <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>
+        <logger name="org.hibernate.SQL" level="DEBUG"/>
+        <logger name="org.hibernate.engine.QueryParameters" level="DEBUG"/>
+        <logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG"/>
+
+        <!--quartz-->
+        <logger name="org.quartz" level="WARN"/>
+        <logger name="org.quartz.core.QuartzScheduler" level="DEBUG"/>
+        <logger name="org.springframework.scheduling.quartz" level="WARN"/>
+
+        <logger name="org.quartz" level="DEBUG" additivity="false">
+            <appender-ref ref="QuartzFile"/>
+        </logger>
+        <logger name="com.hgsoft.wk.quartz" level="DEBUG" additivity="false">
+            <appender-ref ref="QuartzFile"/>
+        </logger>
+
+        <logger name="com.hgsoft.utils.PerformanceMonitor" level="DEBUG" additivity="false">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="MainFile"/>
+            <appender-ref ref="MonitorFile"/>
+        </logger>
+
+        <!--root-->
+        <root level="Debug">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="MainFile"/>
+        </root>
+    </loggers>
+</configuration>

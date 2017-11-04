@@ -1,0 +1,913 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://www.springframework.org/schema/task 
+		http://www.springframework.org/schema/task/spring-task-3.0.xsd 
+       ">
+  <!-- 操作员日志 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="AdminLogService"></property>
+		<property name="service" ref="adminLogService" />
+		<property name="serviceInterface" value="com.hgsoft.system.serviceInterface.IAdminLogService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 主管授权 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="BusinessAccreditService"></property>
+		<property name="service" ref="businessAccreditService" />
+		<property name="serviceInterface" value="com.hgsoft.system.serviceInterface.IBusinessAccreditService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+		<!-- 账户退款申请 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="RefundInfoService"></property>
+		<property name="service" ref="refundInfoService" />
+		<property name="serviceInterface" value="com.hgsoft.account.serviceInterface.IRefundInfoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+		<!-- 账户转账缴款管理 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="BankTransferInfoService"></property>
+		<property name="service" ref="bankTransferInfoService" />
+		<property name="serviceInterface" value="com.hgsoft.account.serviceInterface.IBankTransferInfoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+
+	<!-- 账户缴款 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="RechargeInfoService"></property>
+		<property name="service" ref="rechargeInfoService" />
+		<property name="serviceInterface" value="com.hgsoft.account.serviceInterface.IRechargeInfoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 账户资金变动 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="accountFundChangeService"></property>
+		<property name="service" ref="accountFundChangeService" />
+		<property name="serviceInterface" value="com.hgsoft.account.serviceInterface.IAccountFundChangeService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- obu制作 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="OBUActRecordService"></property>
+		<property name="service" ref="OBUActRecordService" />
+		<property name="serviceInterface" value="com.hgsoft.obu.serviceInterface.IOBUActRecordService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- obu明细 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="OBUActDetailService"></property>
+		<property name="service" ref="OBUActDetailService" />
+		<property name="serviceInterface" value="com.hgsoft.obu.serviceInterface.IOBUActDetailService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+		<!-- 电子标签提货余额登记 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="TagTakeFeeInfoService"></property>
+		<property name="service" ref="tagTakeFeeInfoService" />
+		<property name="serviceInterface"
+			value="com.hgsoft.obu.serviceInterface.ITagTakeFeeInfoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 电子标签提货 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="TagTakeInfoService"></property>
+		<property name="service" ref="tagTakeInfoService" />
+		<property name="serviceInterface"
+			value="com.hgsoft.obu.serviceInterface.ITagTakeInfoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 电子标签恢复 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="TagRecoverService"></property>
+		<property name="service" ref="tagRecoverService" />
+		<property name="serviceInterface"
+			value="com.hgsoft.obu.serviceInterface.ITagRecoverService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 电子标签更换 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="TagReplaceService"></property>
+		<property name="service" ref="tagReplaceService" />
+		<property name="serviceInterface"
+			value="com.hgsoft.obu.serviceInterface.ITagReplaceService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 电子标签停用 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="TagStopService"></property>
+		<property name="service" ref="tagStopService" />
+		<property name="serviceInterface"
+			value="com.hgsoft.obu.serviceInterface.ITagStopService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	
+	<!-- 电子标签发行 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="TagInfoService"></property>
+		<property name="service" ref="tagInfoService" />
+		<property name="serviceInterface" value="com.hgsoft.obu.serviceInterface.ITagInfoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 电子标签迁移 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="TagInfoMigrateService"></property>
+		<property name="service" ref="tagInfoMigrateService" />
+		<property name="serviceInterface" value="com.hgsoft.obu.serviceInterface.ITagInfoMigrateService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 电子标签注销 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="TagInfoCancelService"></property>
+		<property name="service" ref="tagInfoCancelService" />
+		<property name="serviceInterface" value="com.hgsoft.obu.serviceInterface.ITagInfoCancelService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 电子标签维修 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="TagMaintainService"></property>
+		<property name="service" ref="tagMaintainService" />
+		<property name="serviceInterface" value="com.hgsoft.obu.serviceInterface.ITagMaintainService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="AdminService"></property>
+		<property name="service" ref="adminService" />
+		<property name="serviceInterface" value="com.hgsoft.system.serviceInterface.IAdminService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="ModuleService"></property>
+		<property name="service" ref="moduleService" />
+		<property name="serviceInterface" value="com.hgsoft.system.serviceInterface.IModuleService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="RoleService"></property>
+		<property name="service" ref="roleService" />
+		<property name="serviceInterface" value="com.hgsoft.system.serviceInterface.IRoleService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="MainAccountInfoService"></property>
+		<property name="service" ref="mainAccountInfoService" />
+		<property name="serviceInterface" value="com.hgsoft.account.serviceInterface.IMainAccountInfoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="BailAccountInfoService"></property>
+		<property name="service" ref="bailAccountInfoService" />
+		<property name="serviceInterface" value="com.hgsoft.account.serviceInterface.IBailAccountInfoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="SubAccountInfoService"></property>
+		<property name="service" ref="subAccountInfoService" />
+		<property name="serviceInterface" value="com.hgsoft.account.serviceInterface.ISubAccountInfoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="UnifiedInterfaceService"></property>
+		<property name="service" ref="unifiedInterfaceService" />
+		<property name="serviceInterface" value="com.hgsoft.unifiedInterface.serviceInterface.IUnifiedInterface" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--客户信息  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="CustomerService"></property>
+		<property name="service" ref="customerService" />
+		<property name="serviceInterface" value="com.hgsoft.customer.serviceInterface.ICustomerService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+		<!--客户预录入信息  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="AdvanceEntryService"></property>
+		<property name="service" ref="advanceEntryService" />
+		<property name="serviceInterface" value="com.hgsoft.customer.serviceInterface.IAdvanceEntryService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--服务方式登记  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="BillGetService"></property>
+		<property name="service" ref="billGetService" />
+		<property name="serviceInterface" value="com.hgsoft.customer.serviceInterface.IBillGetService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--发票信息  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="InvoiceService"></property>
+		<property name="service" ref="invoiceService" />
+		<property name="serviceInterface" value="com.hgsoft.customer.serviceInterface.IInvoiceService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--车辆信息  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="VehicleInfoService"></property>
+		<property name="service" ref="vehicleInfoService" />
+		<property name="serviceInterface" value="com.hgsoft.customer.serviceInterface.IVehicleInfoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--注销登记  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="CancelService"></property>
+		<property name="service" ref="cancelService" />
+		<property name="serviceInterface" value="com.hgsoft.prepaidC.serviceInterface.ICancelService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--客服流水  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="ServiceFlowRecordService"></property>
+		<property name="service" ref="serviceFlowRecordService" />
+		<property name="serviceInterface" value="com.hgsoft.customer.serviceInterface.IServiceFlowRecordService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--储值卡信息  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="prepaidCService"></property>
+		<property name="service" ref="prepaidCService" />
+		<property name="serviceInterface" value="com.hgsoft.prepaidC.serviceInterface.IPrepaidCService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+
+	<!--储值卡终止服务  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="prepaidCStopCardService"></property>
+		<property name="service" ref="prepaidCStopCardService" />
+		<property name="serviceInterface" value="com.hgsoft.prepaidC.serviceInterface.IPrepaidCStopCardService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--记帐卡终止服务  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="AccountCStopCardService"></property>
+		<property name="service" ref="accountCStopCardService" />
+		<property name="serviceInterface" value="com.hgsoft.accountC.serviceInterface.IAccountCStopCardService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--储值卡业务记录信息  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="prepaidCBussinessService"></property>
+		<property name="service" ref="prepaidCBussinessService" />
+		<property name="serviceInterface" value="com.hgsoft.prepaidC.serviceInterface.IPrepaidCBussinessService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	<!--半条充值确认  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="prepaidHalfPayService"></property>
+		<property name="service" ref="prepaidHalfPayService" />
+		<property name="serviceInterface" value="com.hgsoft.prepaidC.serviceInterface.IPrepaidHalfPayService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--发票打印  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="InvoicePrintService"></property>
+		<property name="service" ref="invoicePrintService" />
+		<property name="serviceInterface" value="com.hgsoft.invoice.serviceInterface.IInvoicePrintService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--通行发票记录  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="PassInvoiceService"></property>
+		<property name="service" ref="passInvoiceService" />
+		<property name="serviceInterface" value="com.hgsoft.invoice.serviceInterface.IPassInvoiceService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	
+	<!--发票账单打印  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="InvoiceBillService"></property>
+		<property name="service" ref="invoiceBillService" />
+		<property name="serviceInterface" value="com.hgsoft.invoice.serviceInterface.IInvoiceBillService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--电子钱包信息  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="electronicPurseService"></property>
+		<property name="service" ref="electronicPurseService" />
+		<property name="serviceInterface" value="com.hgsoft.prepaidC.serviceInterface.IElectronicPurseService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--充值登记信息  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="addRegService"></property>
+		<property name="service" ref="addRegService" />
+		<property name="serviceInterface" value="com.hgsoft.prepaidC.serviceInterface.IAddRegService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--充值登记明细信息  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="AddRegDetailService"></property>
+		<property name="service" ref="addRegDetailService" />
+		<property name="serviceInterface" value="com.hgsoft.prepaidC.serviceInterface.IAddRegDetailService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--回退转移金额信息  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="ReturnFeeService"></property>
+		<property name="service" ref="returnFeeService" />
+		<property name="serviceInterface" value="com.hgsoft.prepaidC.serviceInterface.IReturnFeeService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--车卡标绑定  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="CarObuCardInfoService"></property>
+		<property name="service" ref="carObuCardInfoService" />
+		<property name="serviceInterface" value="com.hgsoft.customer.serviceInterface.ICarObuCardInfoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--日结预处理 
+	<bean id="preDaySetRecordService" class="com.hgsoft.daysettle.service.PreDaySetRecordService"></bean>
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="PreDaySetRecordService"></property>
+		<property name="service" ref="preDaySetRecordService" />
+		<property name="serviceInterface" value="com.hgsoft.daysettle.serviceInterface.IPreDaySetRecordService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean> -->
+	
+	<!--日结日志  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="DaySetLogService"></property>
+		<property name="service" ref="daySetLogService" />
+		<property name="serviceInterface" value="com.hgsoft.daysettle.serviceInterface.IDaySetLogService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--库存日结上报日志  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="DaySetWareLogService"></property>
+		<property name="service" ref="daySetWareLogService" />
+		<property name="serviceInterface" value="com.hgsoft.daysettle.serviceInterface.IDaySetWareLogService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--日结记录  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="DaySetRecordService"></property>
+		<property name="service" ref="daySetRecordService" />
+		<property name="serviceInterface" value="com.hgsoft.daysettle.serviceInterface.IDaySetRecordService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--日结明细  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="DaySetDetailService"></property>
+		<property name="service" ref="daySetDetailService" />
+		<property name="serviceInterface" value="com.hgsoft.daysettle.serviceInterface.IDaySetDetailService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--日结前修正  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="BeforeDaySetService"></property>
+		<property name="service" ref="beforeDaySetService" />
+		<property name="serviceInterface" value="com.hgsoft.daysettle.serviceInterface.IBeforeDaySetService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--库存日结记录  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="DaySetWareRecordService"></property>
+		<property name="service" ref="daySetWareRecordService" />
+		<property name="serviceInterface" value="com.hgsoft.daysettle.serviceInterface.IDaySetWareRecordService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--库存日结明细  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="DaySetWareDetailService"></property>
+		<property name="service" ref="daySetWareDetailService" />
+		<property name="serviceInterface" value="com.hgsoft.daysettle.serviceInterface.IDaySetWareDetailService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--库存日结修正  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="AfterDaySetWareService"></property>
+		<property name="service" ref="afterDaySetWareService" />
+		<property name="serviceInterface" value="com.hgsoft.daysettle.serviceInterface.IAfterDaySetWareService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 其他服务 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="OtherService"></property>
+		<property name="service" ref="otherService" />
+		<property name="serviceInterface" value="com.hgsoft.other.serviceInterface.IOtherService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	
+	<!-- 铭鸿数据 测试卡 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="TestCardService"></property>
+		<property name="service" ref="testCardService" />
+		<property name="serviceInterface" value="com.hgsoft.other.serviceInterface.ITestCardService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>		
+	
+	<!--套装过户  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="EmboitementTransferService"></property>
+		<property name="service" ref="emboitementTransferService" />
+		<property name="serviceInterface" value="com.hgsoft.other.serviceInterface.IEmboitementTransferService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 回执打印 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="receiptService"></property>
+		<property name="service" ref="receiptService" />
+		<property name="serviceInterface" value="com.hgsoft.other.serviceInterface.IReceiptService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 记帐卡初次申请 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="AccountCFirstApplyService"></property>
+		<property name="service" ref="accountCFirstApplyService" />
+		<property name="serviceInterface" value="com.hgsoft.accountC.serviceInterface.IAccountCFirstApplyService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 新增卡申请 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="NewCardApplyService"></property>
+		<property name="service" ref="newCardApplyService" />
+		<property name="serviceInterface" value="com.hgsoft.accountC.serviceInterface.INewCardApplyService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 记帐卡发行 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="AccountCInfoService"></property>
+		<property name="service" ref="accountCInfoService" />
+		<property name="serviceInterface" value="com.hgsoft.accountC.serviceInterface.IAccountCInfoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 记帐卡  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="AccountCService"></property>
+		<property name="service" ref="accountCService" />
+		<property name="serviceInterface" value="com.hgsoft.accountC.serviceInterface.IAccountCService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 记帐卡名称变更  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="AccountNCApplyService"></property>
+		<property name="service" ref="accountNCApplyService" />
+		<property name="serviceInterface" value="com.hgsoft.accountC.serviceInterface.IAccountNCApplyService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="BailService"></property>
+		<property name="service" ref="bailService" />
+		<property name="serviceInterface" value="com.hgsoft.accountC.serviceInterface.IBailService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 记帐卡申请  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="AccountCApplyService"></property>
+		<property name="service" ref="accountCApplyService" />
+		<property name="serviceInterface" value="com.hgsoft.accountC.serviceInterface.IAccountCApplyService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 记帐卡迁移  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="MigrateService"></property>
+		<property name="service" ref="migrateService" />
+		<property name="serviceInterface" value="com.hgsoft.accountC.serviceInterface.IMigrateService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 记帐卡迁移明细  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="MigrateDetailService"></property>
+		<property name="service" ref="migrateDetailService" />
+		<property name="serviceInterface" value="com.hgsoft.accountC.serviceInterface.IMigrateDetailService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 记帐卡过户查询  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="TransferInquiryService"></property>
+		<property name="service" ref="transferInquiryService" />
+		<property name="serviceInterface" value="com.hgsoft.accountC.serviceInterface.ITransferInquiryService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 记帐卡解除止付  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="RelieveStopPayService"></property>
+		<property name="service" ref="relieveStopPayService" />
+		<property name="serviceInterface" value="com.hgsoft.accountC.serviceInterface.IRelieveStopPayService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 手工缴纳通行费  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="acctollcollectListService"></property>
+		<property name="service" ref="acctollcollectListService" />
+		<property name="serviceInterface" value="com.hgsoft.accountC.serviceInterface.IAcctollcollectListService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 止付名单  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="stopListService"></property>
+		<property name="service" ref="stopListService" />
+		<property name="serviceInterface" value="com.hgsoft.accountC.serviceInterface.IStopListService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 服务评价  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="ServiceAssessService"></property>
+		<property name="service" ref="serviceAssessService" />
+		<property name="serviceInterface" value="com.hgsoft.other.serviceInterface.IServiceAssessService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 回执打印  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="ReceiptPrintService"></property>
+		<property name="service" ref="receiptPrintService" />
+		<property name="serviceInterface" value="com.hgsoft.other.serviceInterface.IReceiptPrintService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 营运系统接口 审批  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="AccountCInterfaceService"></property>
+		<property name="service" ref="accountCInterfaceService" />
+		<property name="serviceInterface" value="com.hgsoft.httpInterface.serviceInterface.IAccountCInterfaceService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	<!-- 营运系统接口 库存  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="InventoryService"></property>
+		<property name="service" ref="inventoryService" />
+		<property name="serviceInterface" value="com.hgsoft.httpInterface.serviceInterface.IInventoryService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 营运系统接口 黑名单 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="BlacklistInterfaceService"></property>
+		<property name="service" ref="blacklistInterfaceService" />
+		<property name="serviceInterface" value="com.hgsoft.httpInterface.serviceInterface.IBlacklistInterfaceService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 营运系统接口   电子标签迁移审核 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="TagMigrateInterfaceService"></property>
+		<property name="service" ref="tagMigrateInterfaceService" />
+		<property name="serviceInterface" value="com.hgsoft.httpInterface.serviceInterface.ITagMigrateInterfaceService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 营运系统接口   客服营运参数 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="OmsParamInterfaceService"></property>
+		<property name="service" ref="omsParamInterfaceService" />
+		<property name="serviceInterface" value="com.hgsoft.httpInterface.serviceInterface.IOmsParamInterfaceService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 营运系统接口   客服营运参数 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="MinusBankInterfaceService"></property>
+		<property name="service" ref="minusBankInterfaceService" />
+		<property name="serviceInterface" value="com.hgsoft.httpInterface.serviceInterface.IMinusBankInterfaceService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 营运系统接口  客户信息修改审核 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="CustomerModifyApplyService"></property>
+		<property name="service" ref="customerModifyApplyService" />
+		<property name="serviceInterface" value="com.hgsoft.httpInterface.serviceInterface.ICustomerModifyApplyService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	<!-- 营运系统接口  车辆信息修改审核 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="VehicleModifyApplyService"></property>
+		<property name="service" ref="vehicleModifyApplyService" />
+		<property name="serviceInterface" value="com.hgsoft.httpInterface.serviceInterface.IVehicleModifyApplyService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	<!-- 营运系统接口  特殊费用类型 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="SpecialCostTypeService"></property>
+		<property name="service" ref="specialCostTypeService" />
+		<property name="serviceInterface" value="com.hgsoft.httpInterface.serviceInterface.ISpecialCostTypeService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	<!-- 营运系统接口  特殊费用收取子类型 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="SpecialCostSubclassService"></property>
+		<property name="service" ref="specialCostSubclassService" />
+		<property name="serviceInterface" value="com.hgsoft.httpInterface.serviceInterface.ISpecialCostSubclassService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	 
+
+	<!-- 营运系统接口	退款申请  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="ReqRefundInterfaceService"></property>
+		<property name="service" ref="reqRefundInterfaceService" />
+		<property name="serviceInterface" value="com.hgsoft.httpInterface.serviceInterface.IReqRefundInterfaceService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+
+	<!-- 清算全国联网接口  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="gbissueuserListService"></property>
+		<property name="service" ref="gbissueuserListService" />
+		<property name="serviceInterface" value="com.hgsoft.clearInterface.serviceInterface.IGbissueuserListService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	<!-- 清算发票接口  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="clearInvoiceInfoService"></property>
+		<property name="service" ref="clearInvoiceInfoService" />
+		<property name="serviceInterface" value="com.hgsoft.clearInterface.serviceInterface.IClearInvoiceInfoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	<!-- 日结  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="RegisterDaySetRecordService"></property>
+		<property name="service" ref="registerDaySetRecordService" />
+		<property name="serviceInterface" value="com.hgsoft.daysettle.serviceInterface.IRegisterDaySetRecordService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--库存上报  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="RegisterDaySetWareRecordService"></property>
+		<property name="service" ref="registerDaySetWareRecordService" />
+		<property name="serviceInterface" value="com.hgsoft.daysettle.serviceInterface.IRegisterDaySetWareRecordService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 日结  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="MaterialService"></property>
+		<property name="service" ref="materialService" />
+		<property name="serviceInterface" value="com.hgsoft.customer.serviceInterface.IMaterialService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 参数配置  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="paramConfigService"></property>
+		<property name="service" ref="paramConfigService" />
+		<property name="serviceInterface" value="com.hgsoft.system.serviceInterface.IParamConfigService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 追款配置  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="chaseMoneyService"></property>
+		<property name="service" ref="chaseMoneyService" />
+		<property name="serviceInterface" value="com.hgsoft.system.serviceInterface.IChaseMoneyService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--销售类型  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="SaleTypeDetailService"></property>
+		<property name="service" ref="saleTypeDetailService" />
+		<property name="serviceInterface" value="com.hgsoft.system.serviceInterface.ISaleTypeDetailService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--操作员服务（营运）  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="SysAdminService"></property>
+		<property name="service" ref="sysAdminService" />
+		<property name="serviceInterface" value="com.hgsoft.system.serviceInterface.ISysAdminService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--网点  -->
+	<bean id="cusPointTreeEndService" class="com.hgsoft.system.service.CusPointTreeEndService"></bean>
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="CusPointTreeEndService"></property>
+		<property name="service" ref="cusPointTreeEndService" />
+		<property name="serviceInterface" value="com.hgsoft.system.serviceInterface.ICusPointTreeEndService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--授权服务点资金监控  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="ServiceFundMonitorService"></property>
+		<property name="service" ref="serviceFundMonitorService" />
+		<property name="serviceInterface" value="com.hgsoft.system.serviceInterface.IServiceFundMonitorService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--授权接口控制  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="InterfaceControlService"></property>
+		<property name="service" ref="interfaceControlService" />
+		<property name="serviceInterface" value="com.hgsoft.system.serviceInterface.IInterfaceControlService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--联名卡制卡号码段接口  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="JoinCardNoSectionService"></property>
+		<property name="service" ref="joinCardNoSectionService" />
+		<property name="serviceInterface" value="com.hgsoft.httpInterface.serviceInterface.IJoinCardNoSectionService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 记帐卡客户资料管理 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="IvrAccountCService"></property>
+		<property name="service" ref="ivrAccountCService" />
+		<property name="serviceInterface" value="com.hgsoft.accountC.serviceInterface.IIvrAccountCService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+
+	<!-- 营运系统接口 查询发票抬头  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="FindInvoiceDetailService"></property>
+		<property name="service" ref="findInvoiceDetailService" />
+		<property name="serviceInterface" value="com.hgsoft.httpInterface.serviceInterface.IFindInvoiceDetailService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+
+	<!-- 营运系统接口 业务授权管理  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="AuthorizationService"></property>
+		<property name="service" ref="authorizationService" />
+		<property name="serviceInterface" value="com.hgsoft.httpInterface.serviceInterface.IAuthorizationService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+
+	<!-- 报表  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="ReportFormsService"></property>
+		<property name="service" ref="reportFormsService" />
+		<property name="serviceInterface" value="com.hgsoft.report.serviceInterface.IReportFormsService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 日结服务  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="DaySetReportService"></property>
+		<property name="service" ref="daySetReportService" />
+		<property name="serviceInterface" value="com.hgsoft.daysettle.serviceInterface.IDaySetReportService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 资金库存上报服务  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="DaySetFeeWareService"></property>
+		<property name="service" ref="daySetFeeWareService" />
+		<property name="serviceInterface" value="com.hgsoft.daysettle.serviceInterface.IDaySetFeeWareService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 现金日缴存上报服务  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="DaySetCashDepositService"></property>
+		<property name="service" ref="daySetCashDepositService" />
+		<property name="serviceInterface" value="com.hgsoft.daysettle.serviceInterface.IDaySetCashDepositService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 短款修正上报服务  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="DaySetCorrectService"></property>
+		<property name="service" ref="daySetCorrectService" />
+		<property name="serviceInterface" value="com.hgsoft.daysettle.serviceInterface.IDaySetCorrectService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 日结审批服务  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="DaySetApproveService"></property>
+		<property name="service" ref="daySetApproveService" />
+		<property name="serviceInterface" value="com.hgsoft.daysettle.serviceInterface.IDaySetApproveService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 电子标签发行 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="VehicleBussinessService"></property>
+		<property name="service" ref="vehicleBussinessService" />
+		<property name="serviceInterface" value="com.hgsoft.customer.serviceInterface.IVehicleBussinessService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+
+	<!-- 客服类型 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="SerTypeService"></property>
+		<property name="service" ref="serTypeService" />
+		<property name="serviceInterface" value="com.hgsoft.sertype.serviceInterface.ISerTypeService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 缴款单  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="voucherService"></property>
+		<property name="service" ref="voucherService" />
+		<property name="serviceInterface" value="com.hgsoft.account.serviceInterface.IVoucherService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+
+
+	<!--银行接口权限校验  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="BankInterfaceAuthService"></property>
+		<property name="service" ref="bankInterfaceAuthService" />
+		<property name="serviceInterface" value="com.hgsoft.bank.serviceInterface.IBankInterfaceAuthService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--主任审核  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="DirectorAuditeService"></property>
+		<property name="service" ref="directorAuditeService" />
+		<property name="serviceInterface" value="com.hgsoft.directorAudite.serviceInterface.IDirectorAuditeService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!--主任审核  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="ExceptionCustomerDataService"></property>
+		<property name="service" ref="exceptionCustomerDataService" />
+		<property name="serviceInterface" value="com.hgsoft.customer.serviceInterface.IExceptionCustomerDataService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+
+
+	<!--预充值卡设置表(OMS_prepareCardSet)  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="prepareCardSetService"></property>
+		<property name="service" ref="prepareCardSetService" />
+		<property name="serviceInterface" value="com.hgsoft.prepaidC.serviceInterface.IPrepareCardSetService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+
+
+</beans>

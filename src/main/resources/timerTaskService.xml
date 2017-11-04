@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 业务对象 -->
+    <bean id="timeJobTask" class="com.hgsoft.timerTask.service.TimedTaskService" />
+    <!--报表业务对象-->
+    <bean id="reportTimerTask" class="com.hgsoft.timerTask.service.ReportTimerTask" />
+
+    <!--黑名单调度业务
+    <bean name="darkList" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="timeJobTask" />
+                <entry key="targetMethod" value="addDarkListFromEtcTolling" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="addDarkListTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="darkList" />
+        <property name="cronExpression" value="0/10 * * * * ?" />
+    </bean>-->
+
+    <!-- 配置Job详情 -->
+    <!--<bean name="helloWorldJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="timeJobTask" />
+                <entry key="targetMethod" value="helloWorld" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+
+    <bean id="helloWorldTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="helloWorldJob" />
+        <property name="cronExpression" value="0 0 19-20 * * ?" />
+        <property name="misfireInstruction" value="2" />
+    </bean>-->
+
+
+    <!-- 储值卡终止使用 -->
+    <!--<bean name="stopCard" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="timeJobTask" />
+                <entry key="targetMethod" value="prepaidCStopCard" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="prepaidCStopCardTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="stopCard" />
+        <property name="cronExpression" value="0/10 * * * * ?" />
+    </bean>
+
+
+    &lt;!&ndash; 调度业务 &ndash;&gt;
+    <bean name="jobDetail1" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="timeJobTask" />
+                <entry key="targetMethod" value="updateInvoiceChangeFlow" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="updateInvoiceChangeFlowTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobDetail1" />
+        <property name="cronExpression" value="0 24 13 * * ?" />
+    </bean>
+
+    &lt;!&ndash; 黑名单调度业务 &ndash;&gt;
+    <bean name="darkList" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="timeJobTask" />
+                <entry key="targetMethod" value="addDarkListFromEtcTolling" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="addDarkListTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="darkList" />
+        <property name="cronExpression" value="0/10 * * * * ?" />
+    </bean>
+    
+    &lt;!&ndash; 记帐卡迁移 &ndash;&gt;
+    <bean name="accountCMigrate" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="timeJobTask" />
+                <entry key="targetMethod" value="updateAccountCMigrate" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="updateAccountCMigrateTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="accountCMigrate" />
+        <property name="cronExpression" value="0 0/5 * * * ?" />
+    </bean>
+
+
+    &lt;!&ndash; 调度业务 &ndash;&gt;
+    <bean name="jobDetail2" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="timeJobTask" />
+                <entry key="targetMethod" value="saveReturnFeeFromClear" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="saveReturnFeeFromClearTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobDetail2" />
+        <property name="cronExpression" value="0 34 15 * * ?" />
+    </bean>
+
+    &lt;!&ndash; 调度业务 &ndash;&gt;
+    <bean name="jobDetail3" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="timeJobTask" />
+                <entry key="targetMethod" value="updateTagInfoBlackFlag" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="updateTagInfoBlackFlagTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobDetail3" />
+        <property name="cronExpression" value="0 24 13 * * ?" />
+    </bean>
+	
+    &lt;!&ndash; 发送黑名单全量记录 &ndash;&gt;
+    <bean name="jobBalckListAll" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="timeJobTask" />
+                <entry key="targetMethod" value="saveBlackListAll" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="saveBlackListTempTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobBalckListAll" />
+        <property name="cronExpression" value="0 0 9 * * ?" />
+    </bean>
+    
+    &lt;!&ndash; 发送黑名单增量记录 &ndash;&gt;
+    <bean name="jobBalckListAddition" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="timeJobTask" />
+                <entry key="targetMethod" value="saveBlackListSendAddition" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="saveBlackListAdditionTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobBalckListAddition" />
+        <property name="cronExpression" value="0 0 0/2 * * ?" />
+    </bean>
+    
+    &lt;!&ndash; 处理黑名单流水表 &ndash;&gt;
+    <bean name="jobDealBalckListWater" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="timeJobTask" />
+                <entry key="targetMethod" value="saveDealBlackListWater" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="saveBlackListWaterTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobDealBalckListWater" />
+        <property name="cronExpression" value="0 1/5 * * * ?" />
+    </bean>
+    
+    &lt;!&ndash; 更新无卡注销和无卡换卡的系统余额 &ndash;&gt;
+    <bean name="jobSavePrepaidCBalance" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="timeJobTask" />
+                <entry key="targetMethod" value="savePrepaidCBalance" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="savePrepaidCBalanceTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobSavePrepaidCBalance" />
+        <property name="cronExpression" value="0 0 0/2 * * ?" />
+    </bean>
+    
+    &lt;!&ndash; MQ定时调度 &ndash;&gt;
+    &lt;!&ndash; <bean id="mqTimerTaskService" class="com.hgsoft.timerTask.service.MQTimerTaskService" />
+
+    <bean id="saveLoss" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+     <property name="targetObject" ref="mqTimerTaskService" />
+     <property name="targetMethod" value="saveLoss" />
+    </bean>
+    <bean id="testTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+     <property name="jobDetail" ref="saveLoss" />
+     <property name="cronExpression" value="0/1 * * * * ?" />
+    </bean>
+    <bean id="saveUnLoss" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+     <property name="targetObject" ref="mqTimerTaskService" />
+     <property name="targetMethod" value="saveUnLoss" />
+    </bean>
+    <bean id="saveUnLossTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+     <property name="jobDetail" ref="saveUnLoss" />
+     <property name="cronExpression" value="0/1 * * * * ?" />
+    </bean>
+    <bean id="saveIssueAgain" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+     <property name="targetObject" ref="mqTimerTaskService" />
+     <property name="targetMethod" value="saveIssueAgain" />
+    </bean>
+    <bean id="saveIssueAgainTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+     <property name="jobDetail" ref="saveIssueAgain" />
+     <property name="cronExpression" value="0/1 * * * * ?" />
+    </bean>
+    <bean id="saveCancelCard" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+     <property name="targetObject" ref="mqTimerTaskService" />
+     <property name="targetMethod" value="saveCancelCard" />
+    </bean>
+    <bean id="saveCancelCardTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+     <property name="jobDetail" ref="saveCancelCard" />
+     <property name="cronExpression" value="0/1 * * * * ?" />
+    </bean>
+    <bean id="saveStopCard" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+     <property name="targetObject" ref="mqTimerTaskService" />
+     <property name="targetMethod" value="saveStopCard" />
+    </bean>
+    <bean id="saveStopCardTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+     <property name="jobDetail" ref="saveStopCard" />
+     <property name="cronExpression" value="0/1 * * * * ?" />
+    </bean>
+    <bean id="saveRelieveStopCard" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+     <property name="targetObject" ref="mqTimerTaskService" />
+     <property name="targetMethod" value="saveRelieveStopCard" />
+    </bean>
+    <bean id="saveRelieveStopCardTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+     <property name="jobDetail" ref="saveRelieveStopCard" />
+     <property name="cronExpression" value="0/1 * * * * ?" />
+    </bean>
+    <bean id="saveVehicleChange" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+     <property name="targetObject" ref="mqTimerTaskService" />
+     <property name="targetMethod" value="saveVehicleChange" />
+    </bean>
+    <bean id="saveVehicleChangeTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+     <property name="jobDetail" ref="saveVehicleChange" />
+     <property name="cronExpression" value="0/1 * * * * ?" />
+    </bean>
+    <bean id="saveServerChange" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+     <property name="targetObject" ref="mqTimerTaskService" />
+     <property name="targetMethod" value="saveServerChange" />
+    </bean>
+    <bean id="saveServerChangeTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+     <property name="jobDetail" ref="saveServerChange" />
+     <property name="cronExpression" value="0/1 * * * * ?" />
+    </bean>
+    <bean id="saveTagIssueAgain" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+     <property name="targetObject" ref="mqTimerTaskService" />
+     <property name="targetMethod" value="saveTagIssueAgain" />
+    </bean>
+    <bean id="saveTagIssueAgainTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+     <property name="jobDetail" ref="saveTagIssueAgain" />
+     <property name="cronExpression" value="0/1 * * * * ?" />
+    </bean>
+    <bean id="saveTagReplace" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+     <property name="targetObject" ref="mqTimerTaskService" />
+     <property name="targetMethod" value="saveTagReplace" />
+    </bean>
+    <bean id="saveTagReplaceTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+     <property name="jobDetail" ref="saveTagReplace" />
+     <property name="cronExpression" value="0/1 * * * * ?" />
+    </bean>
+    <bean id="saveMigrate" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+     <property name="targetObject" ref="mqTimerTaskService" />
+     <property name="targetMethod" value="saveMigrate" />
+    </bean>
+    <bean id="saveMigrateTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+     <property name="jobDetail" ref="saveMigrate" />
+     <property name="cronExpression" value="0/1 * * * * ?" />
+    </bean>
+
+     &ndash;&gt;
+
+
+    &lt;!&ndash; 调度报表业务 &ndash;&gt;
+    <bean name="jobDetail4" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="reportTimerTask" />
+                <entry key="targetMethod" value="addTagsellIssueTotal" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="addTagsellIssueTotalTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobDetail4" />
+        <property name="cronExpression" value="0/5 40 16 * * ?" />
+    </bean>
+
+    &lt;!&ndash; 粤通卡销售统计 &ndash;&gt;
+    <bean name="etcCardSaleCount" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="reportTimerTask" />
+                <entry key="targetMethod" value="addEtcCardSaleCount" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="addEtcCardSaleCountTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="etcCardSaleCount" />
+        <property name="cronExpression" value="0 30 23 * * ?" />
+    </bean>
+
+    &lt;!&ndash; 调度报表电子标签销售与发行明细 &ndash;&gt;
+ 	 <bean name="jobElectronicTagSellIssueDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="reportTimerTask" />
+                <entry key="targetMethod" value="electronicTagSellIssueDetail" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="electronicTagSellIssueDetailTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobElectronicTagSellIssueDetail" />
+        <property name="cronExpression" value="0 30 23 * * ?" />
+    </bean>
+
+
+    &lt;!&ndash; 缴款单余额报表 &ndash;&gt;
+ 	 <bean name="jobPaymentBalanceReport" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="reportTimerTask" />
+                <entry key="targetMethod" value="paymentBalanceReport" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="paymentBalanceReportTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobPaymentBalanceReport" />
+        <property name="cronExpression" value="0 30 23 * * ?" /> 
+    </bean>
+
+    &lt;!&ndash; 资金业务流水汇总报表 &ndash;&gt;
+ 	 <bean name="jobServiceMoneyWaterReport" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="reportTimerTask" />
+                <entry key="targetMethod" value="serviceMoneyWaterReport" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="serviceMoneyWaterReportTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobServiceMoneyWaterReport" />
+        <property name="cronExpression" value="59 50 23 * * ? " />   &lt;!&ndash; 2017/7/10 23:50:59 &ndash;&gt;
+    </bean>
+    
+       &lt;!&ndash; 生成账户余额报表数据 &ndash;&gt;
+ 	 <bean name="jobGenerateAccountBalanceReportData" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="reportTimerTask" />
+                <entry key="targetMethod" value="generateAccountBalanceReportData" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="generateAccountBalanceReportDataTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobGenerateAccountBalanceReportData" />
+        <property name="cronExpression" value="0 0 23 * * ? *" /> 
+    </bean>
+    
+    &lt;!&ndash; 生成银行转账余额报表数据 &ndash;&gt;
+ 	 <bean name="jobGenerateBankTransferBalanceReportData" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="reportTimerTask" />
+                <entry key="targetMethod" value="generateBankTransferBalanceReportData" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="generateBankTransferBalanceReportDataTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobGenerateBankTransferBalanceReportData" />
+        <property name="cronExpression" value="0 0 23 * * ? *" /> 
+    </bean>
+    
+    &lt;!&ndash; 生成电子标签提货金额余额报表数据 &ndash;&gt;
+ 	 <bean name="jobGenerateOBUPickUPBalanceReportData" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="reportTimerTask" />
+                <entry key="targetMethod" value="generateOBUPickUPBalanceReportData" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="generateOBUPickUPBalanceReportDataTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobGenerateOBUPickUPBalanceReportData" />
+        <property name="cronExpression" value="0 0 23 * * ? *" />  
+    </bean>
+    
+    &lt;!&ndash; 代理充值统计(月结报表) &ndash;&gt;
+ 	 <bean name="jobGeneratePrepaidMonthSum" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="reportTimerTask" />
+                <entry key="targetMethod" value="insertPrepaidSum" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="generatePrepaidMonthSumTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobGeneratePrepaidMonthSum" />
+        <property name="cronExpression" value="0 0 2 1 * ? *" />  
+        &lt;!&ndash; <property name="cronExpression" value="0/5 * * * * ? " />   &ndash;&gt;
+    </bean>-->
+    
+    <!-- 联合电服预交款汇总报表-->
+ 	  <!--<bean name="jobInsertPrePayTotal" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="reportTimerTask" />
+                <entry key="targetMethod" value="insertPrePayTotal" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="insertPrePayTotalTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobInsertPrePayTotal" />
+        <property name="cronExpression" value="0 0 23 * * ? *" />  
+    </bean> 
+    
+    &lt;!&ndash; 存量国标卡片分类明细表&ndash;&gt;
+ 	  <bean name="jobInsertStockGBCardDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="reportTimerTask" />
+                <entry key="targetMethod" value="insertStockGBCardDetail" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="insertStockGBCardDetailTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobInsertStockGBCardDetail" />
+        <property name="cronExpression" value="0 30 23 * * ? " />  
+        &lt;!&ndash; <property name="cronExpression" value="0/5 * * * * ?" />   &ndash;&gt;
+    </bean> 
+    
+     &lt;!&ndash; 注销国标卡片分类明细表&ndash;&gt;
+ 	  <bean name="jobInsertCancelCardDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.hgsoft.clusterquartz.jobdetail.MyDetailQuartzJobBean"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="targetObject" value="reportTimerTask" />
+                <entry key="targetMethod" value="insertCancelCardDetail" />
+            </map>
+        </property>
+        <property name="durability" value="true"/>
+        <property name="requestsRecovery" value="false"/>
+    </bean>
+    <bean id="insertCancelCardDetailTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobInsertCancelCardDetail" />
+        <property name="cronExpression" value="0 30 23 * * ? " />  
+        &lt;!&ndash; <property name="cronExpression" value="0/5 * * * * ?" />   &ndash;&gt;
+    </bean> -->
+    
+    <!-- 配置调度任务-->
+    <bean name="quartzScheduler" id="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="configLocation" value="classpath:quartz.properties"/>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="transactionManager" ref="transactionManager"/>
+
+        <!-- 任务唯一的名称，将会持久化到数据库-->
+        <property name="schedulerName" value="baseScheduler"/>
+
+        <!-- 每台集群机器部署应用的时候会更新触发器-->
+        <property name="overwriteExistingJobs" value="true"/>
+        <property name="applicationContextSchedulerContextKey" value="appli"/>
+        <!--必QuartzScheduler 延时启动，应用启动完后 QuartzScheduler 再启动,单位秒 -->
+        <property name="startupDelay" value="10" />
+        <!-- 设置自动启动 -->
+        <property name="autoStartup" value="true" />
+
+        <property name="jobFactory">
+            <bean class="com.hgsoft.clusterquartz.autowired.AutowiringSpringBeanJobFactory"/>
+        </property>
+
+        <!--<property name="triggers">
+            <list>
+                &lt;!&ndash;<ref bean="helloWorldTrigger"/>&ndash;&gt;
+                <ref bean="updateInvoiceChangeFlowTrigger" />
+                <ref bean="updateTagInfoBlackFlagTrigger" />
+                <ref bean="saveReturnFeeFromClearTrigger" />
+                <ref bean="saveBlackListTempTrigger"/>
+                <ref bean="saveBlackListAdditionTrigger"/>
+                <ref bean="saveBlackListWaterTrigger"/>
+                <ref bean="savePrepaidCBalanceTrigger"/>
+                <ref bean="addDarkListTrigger" />
+                <ref bean="addTagsellIssueTotalTrigger" />
+                <ref bean="updateAccountCMigrateTrigger" />
+                <ref bean="prepaidCStopCardTrigger" />
+                <ref bean="electronicTagSellIssueDetailTrigger" />
+                <ref bean="addEtcCardSaleCountTrigger" />
+                <ref bean="paymentBalanceReportTrigger" />
+                <ref bean="serviceMoneyWaterReportTrigger" />
+                <ref bean="generateAccountBalanceReportDataTrigger" />
+                <ref bean="generateBankTransferBalanceReportDataTrigger" />
+                <ref bean="generateOBUPickUPBalanceReportDataTrigger" />
+                <ref bean="generatePrepaidMonthSumTrigger" />
+                <ref bean="insertPrePayTotalTrigger" />
+                <ref bean="insertStockGBCardDetailTrigger" />
+                <ref bean="insertCancelCardDetailTrigger" />
+            </list>
+        </property>-->
+    </bean>
+</beans>

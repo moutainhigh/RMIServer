@@ -1,0 +1,72 @@
+-------------------------readme-----------------------------------
+营改增代码提交readme
+每次提交代码必须在此添加说明（代码+DDL语句）
+修改内容(+表示增加，-表示删除,*表示修改,--表示删除文件夹及文件夹下所有文件,**表示更新文件夹及文件夹下所有文件):
+------------------------提交示例-----------------------------------
+1) 【模块名】 20160418 yebin 
+	A：修改内容
+	+/RMIserver/src/com/hgsoft/ygz/OrgRechargeDailyStatisJob.java
+	*/RMIserver/src/com/hgsoft/ygz/OrgRechargeMonthlyStatisJob.java
+
+------------------------------------------------------------------
+
+1) 【营改增包结构模块初始化】 20171016 yebin 
+	A：初始化营改增包结构
+	+/RMIserver/src/main/java/com/hgsoft/ygz
+	+/RMIserver/src/main/java/com/hgsoft/ygz/common
+	+/RMIserver/src/main/java/com/hgsoft/ygz/common/BusinessTypeEmeu.java
+	+/RMIserver/src/main/java/com/hgsoft/ygz/common/Constants.java
+	+/RMIserver/src/main/java/com/hgsoft/ygz/common/OperationTypeEmeu.java
+	+/RMIserver/src/main/java/com/hgsoft/ygz/dao
+	+/RMIserver/src/main/java/com/hgsoft/ygz/dao/NoRealBusinessReqDao.java
+	+/RMIserver/src/main/java/com/hgsoft/ygz/dao/RealBusinessReqDao.java
+	+/RMIserver/src/main/java/com/hgsoft/ygz/entity
+	+/RMIserver/src/main/java/com/hgsoft/ygz/entity/NoRealBusinessReq.java
+	+/RMIserver/src/main/java/com/hgsoft/ygz/entity/RealBusinessReq.java
+	+/RMIserver/src/main/java/com/hgsoft/ygz/service/NoRealBusinessReqService.java
+	+/RMIserver/src/main/java/com/hgsoft/ygz/service/NoRealTransferService.java
+	+/RMIserver/src/main/java/com/hgsoft/ygz/service/RealBusinessReqService.java
+	+/RMIserver/src/main/java/com/hgsoft/ygz/service/RealTransferService.java
+	+/RMIserver/src/main/java/com/hgsoft/ygz/service/impl/NoRealBusinessReqServiceImpl.java
+	+/RMIserver/src/main/java/com/hgsoft/ygz/service/impl/NoRealTransferServiceImpl.java
+	+/RMIserver/src/main/java/com/hgsoft/ygz/service/impl/RealBusinessReqServiceImpl.java
+	+/RMIserver/src/main/java/com/hgsoft/ygz/service/impl/RealTransferServiceImpl.java
+	+/RMIserver/src/main/java/com/hgsoft/ygz/util
+	+/RMIserver/src/main/java/com/hgsoft/ygz/util/DateUtil.java
+
+2) 【营改增数据采集接口修改】 20171017 wangjinhao
+    A：自营用户卡信息上传及变更接口新增
+    */RMIserver/src/main/java/com/hgsoft/ygz/service/RealTransferService.java
+    */RMIserver/src/main/java/com/hgsoft/ygz/service/impl/RealBusinessReqServiceImpl.java
+
+    B：用户卡黑名单上传及变更接口修改，添加status字段采集
+    */RMIserver/src/main/java/com/hgsoft/ygz/service/impl/NoRealTransferServiceImpl.java
+
+    C：自营：记账卡服务
+    卡发行
+    */RMIserver/src/main/java/com/hgsoft/accountC/service/AccountCInfoService.java；CARDUPLOAD20171017
+    卡挂失/卡解挂/卡补领/换卡
+    */RMIserver/src/main/java/com/hgsoft/accountC/service/AccountCService.java；CARDUPLOAD+CARDBLACKLISTUPLOAD20171017
+
+3) 【营改增数据采集接口修改】 20171018 wangjinhao
+
+    A：代理：记账卡服务
+    挂失/解挂/补领/换卡
+    */RMIserver/src/main/java/com/hgsoft/agentCard/service/CardBusinessInfoService.java；CARDUPLOAD+CARDBLACKLISTUPLOAD20171018
+
+3) 【营改增数据采集接口修改】 20171019 wangjinhao
+
+    A：澳门通：记账卡服务
+    挂失
+    */RMIserver/src/main/java/com/hgsoft/macao/service/MacaoService.java；CARDUPLOAD+CARDBLACKLISTUPLOAD20171019
+    补领/换卡
+    */RMIserver/src/main/java/com/hgsoft/macao/service/MacaoUTService.java；CARDUPLOAD+CARDBLACKLISTUPLOAD20171019
+
+    B：香港联营：记账卡服务
+    挂失
+    */RMIserver/src/main/java/com/hgsoft/associateAcount/service/LostService.java；CARDUPLOAD+CARDBLACKLISTUPLOAD20171019
+    解挂
+    */RMIserver/src/main/java/com/hgsoft/associateAcount/service/UnLostService.java；CARDUPLOAD+CARDBLACKLISTUPLOAD20171019
+
+
+

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://www.springframework.org/schema/task 
+		http://www.springframework.org/schema/task/spring-task-3.0.xsd 
+       ">
+	
+	
+  
+	
+	<!-- <bean id="lianCardFileUploadService" class="com.hgsoft.associateAcount.service.LianCardFileUploadService"></bean>
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="LianCardFileUploadService"></property>
+		<property name="service" ref="lianCardFileUploadService" />
+		<property name="serviceInterface" value="com.hgsoft.associateAcount.serviceInterface.ILianCardFileUploadService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean> -->
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="AgentTagInfoService"></property>
+		<property name="service" ref="agentTagInfoService" />
+		<property name="serviceInterface" value="com.hgsoft.obu.serviceInterface.IAgentTagInfoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="AgentPrepaidCService"></property>
+		<property name="service" ref="agentPrepaidCService" />
+		<property name="serviceInterface" value="com.hgsoft.prepaidC.serviceInterface.IAgentPrepaidCService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 卡号段 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="CardNoSectionService"></property>
+		<property name="service" ref="cardNoSectionService" />
+		<property name="serviceInterface" value="com.hgsoft.agentCard.serviceInterface.ICardNoSectionService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 联名卡（信用卡）注销查询接口  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="CreditCardCancelService"></property>
+		<property name="service" ref="creditCardCancelService" />
+		<property name="serviceInterface" value="com.hgsoft.agentCard.serviceInterface.ICreditCardCancelService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	<!-- 联名卡（信用卡）黑名单查询接口  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="CreditCardBlacklistService"></property>
+		<property name="service" ref="creditCardBlacklistService" />
+		<property name="serviceInterface" value="com.hgsoft.agentCard.serviceInterface.ICreditCardBlacklistService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 联名卡（信用卡）客服流水查询接口  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="CreditCardServiceFlowService"></property>
+		<property name="service" ref="creditCardServiceFlowService" />
+		<property name="serviceInterface" value="com.hgsoft.agentCard.serviceInterface.ICreditCardServiceFlowService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 联名卡（信用卡）业务办理  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="CardBusinessInfoService"></property>
+		<property name="service" ref="cardBusinessInfoService" />
+		<property name="serviceInterface" value="com.hgsoft.agentCard.serviceInterface.ICardBusinessInfoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+
+	<!-- 联名卡（信用卡）生成业务记录和客服流水  -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="ServiceWaterService"></property>
+		<property name="service" ref="serviceWaterService" />
+		<property name="serviceInterface" value="com.hgsoft.agentCard.serviceInterface.IServiceWaterService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	
+</beans>

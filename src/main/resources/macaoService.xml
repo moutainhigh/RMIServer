@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://www.springframework.org/schema/task 
+		http://www.springframework.org/schema/task/spring-task-3.0.xsd 
+       ">
+	
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="MacaoService"></property>
+		<property name="service" ref="macaoService" />
+		<property name="serviceInterface" value="com.hgsoft.macao.serviceInterface.IMacaoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="MacaoUTService"></property>
+		<property name="service" ref="macaoUTService" />
+		<property name="serviceInterface" value="com.hgsoft.macao.serviceInterface.IMacaoUTService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="CarUserCardInfoService"></property>
+		<property name="service" ref="carUserCardInfoService" />
+		<property name="serviceInterface" value="com.hgsoft.macao.serviceInterface.ICarUserCardInfoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="MacaoTagService"></property>
+		<property name="service" ref="macaoTagService" />
+		<property name="serviceInterface" value="com.hgsoft.macao.serviceInterface.IMacaoTagService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 回执打印 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="MacaoReceiptService"></property>
+		<property name="service" ref="macaoReceiptService" />
+		<property name="serviceInterface" value="com.hgsoft.macao.serviceInterface.IMacaoReceiptService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="TagIssueInfoService"></property>
+		<property name="service" ref="tagIssueInfoService" />
+		<property name="serviceInterface" value="com.hgsoft.macao.serviceInterface.ITagIssueInfoService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	<!-- 其他服务 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="MacaoOtherService"></property>
+		<property name="service" ref="macaoOtherService" />
+		<property name="serviceInterface" value="com.hgsoft.macao.serviceInterface.IMacaoOtherService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	<!-- 发票邮寄服务 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="MacaoBillGetService"></property>
+		<property name="service" ref="macaoBillGetService" />
+		<property name="serviceInterface" value="com.hgsoft.macao.serviceInterface.IMacaoBillGetService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 报表查询 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="ReportService"></property>
+		<property name="service" ref="reportService" />
+		<property name="serviceInterface" value="com.hgsoft.macao.serviceInterface.IReportService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	
+	<!-- 澳门通报表-->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="MacaoReportService"></property>
+		<property name="service" ref="macaoReportService" />
+		<property name="serviceInterface" value="com.hgsoft.macao.serviceInterface.IMacaoReportService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+	<!-- 通行费审核 -->
+	<bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+		<property name="serviceName" value="TollFeeVerifyService"></property>
+		<property name="service" ref="tollFeeVerifyService" />
+		<property name="serviceInterface" value="com.hgsoft.macao.serviceInterface.ITollFeeVerifyService" />
+		<property name="registry" ref="registry"/><property name="servicePort" value="${rmiPort}" />
+	</bean>
+</beans>
