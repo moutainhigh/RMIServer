@@ -247,8 +247,12 @@ public class LostService implements ILostService {
 
 			//ygz wangjinhao---------------------------------- start CARDUPLOAD+CARDBLACKLISTUPLOAD20171019
 			VehicleInfo vehicleInfo = vehicleInfoDao.findByAccountCNo(accountCInfo.getCardNo());
+			Customer newCustomer = new Customer();
+			newCustomer.setUserNo(cardHolder.getUserNo());
+			newCustomer.setOrgan(cardHolder.getName());
+			newCustomer.setAgentName(cardHolder.getAgentName());
 			// 调用用户卡信息上传及变更接口
-			realTransferService.accountCInfoTransfer(customer, accountCInfo, vehicleInfo,
+			realTransferService.accountCInfoTransfer(newCustomer, accountCInfo, vehicleInfo,
 					CardStatusEmeu.CARD_LOSS.getCode(), OperationTypeEmeu.UPDATE
 							.getCode());
 

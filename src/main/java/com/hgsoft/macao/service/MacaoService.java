@@ -379,8 +379,12 @@ public class MacaoService implements IMacaoService {
 
 				//ygz wangjinhao---------------------------------- start CARDUPLOAD+CARDBLACKLISTUPLOAD20171019
 				VehicleInfo vehicleInfo = vehicleInfoDao.findByAccountCNo(accountCInfo.getCardNo());
+				Customer customer = new Customer();
+				customer.setUserNo(macaoCardCustomer.getUserNo());
+				customer.setOrgan(macaoCardCustomer.getCnName());
+				customer.setAgentName(macaoCardCustomer.getAgentName());
 				// 调用用户卡信息上传及变更接口
-				realTransferService.accountCInfoTransfer(macaoCustomer, accountCInfo, vehicleInfo, CardStatusEmeu.CARD_LOSS.getCode(), OperationTypeEmeu
+				realTransferService.accountCInfoTransfer(customer, accountCInfo, vehicleInfo, CardStatusEmeu.CARD_LOSS.getCode(), OperationTypeEmeu
 						.UPDATE.getCode());
 
 				// 调用用户卡黑名单上传及变更接口
